@@ -12,10 +12,10 @@ const io = new Server(server, { cors: { origin: '*' } });
 
 
 
-io.on("connection", (socket) => {
+io.sockets.on("connection", (socket) => {
   socket.on("message", ({ msg, user }) => {
     console.log(`${user}: ${msg}`);
     console.log('push received, emitting a pop');
-    socket.emit('message', { user, msg });
+    io.sockets.emit('message', { user, msg });
   });
 });

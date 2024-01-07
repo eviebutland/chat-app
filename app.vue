@@ -5,7 +5,10 @@
       <button @click="handleSend">Send</button>
     </form>
     <ul>
-      {{ chatMessages }}
+      <li v-for="chat of chatMessages">
+        {{ chat.user }}: {{ chat.msg }}
+      </li>
+
     </ul>
   </div>
 </template>
@@ -23,16 +26,11 @@ socket.on("connect_error", (err) => {
 const chatMessages = ref([])
 
 function handleSend(e) {
-  console.log(socket)
   e.preventDefault()
-
-  console.log(message.value)
   socket.emit('message', { user: socket.id, msg: message.value })
-
 }
 
 socket.on('message', (data) => {
-  console.log(data)
   chatMessages.value.push(data)
 })
 </script>
