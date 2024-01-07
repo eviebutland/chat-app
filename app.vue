@@ -4,7 +4,9 @@
       <input type="text" v-model="message" placeholder="send a message" />
       <button @click="handleSend">Send</button>
     </form>
-    <ul></ul>
+    <ul>
+      {{ chatMessages }}
+    </ul>
   </div>
 </template>
 
@@ -19,13 +21,19 @@ socket.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
 });
 const chatMessages = ref([])
+
 function handleSend(e) {
   console.log(socket)
   e.preventDefault()
 
   console.log(message.value)
-  socket.emit('chat message', message.value)
+  socket.emit('message', { user: socket.id, msg: message.value })
 
 }
+
+socket.on('message', (data) => {
+  console.log(data)
+  chatMessages.value.push(data)
+})
 </script>
 

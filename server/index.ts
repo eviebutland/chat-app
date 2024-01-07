@@ -11,12 +11,11 @@ const server = app.listen(port, () => {
 const io = new Server(server, { cors: { origin: '*' } });
 
 
-app.get("/", (req, res) => {
-  console.log(req);
-});
 
 io.on("connection", (socket) => {
-  socket.on("chat message", (msg) => {
-    console.log("message: " + msg);
+  socket.on("message", ({ msg, user }) => {
+    console.log(`${user}: ${msg}`);
+    console.log('push received, emitting a pop');
+    socket.emit('message', { user, msg });
   });
 });
