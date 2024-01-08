@@ -14,8 +14,22 @@ const io = new Server(server, { cors: { origin: '*' } });
 
 io.sockets.on("connection", (socket) => {
   socket.on("message", ({ msg, user }) => {
-    console.log(`${user}: ${msg}`);
-    console.log('push received, emitting a pop');
+    // Goes to current user
+    socket.emit('messsage', { msg: 'Welcome to the chat app' })
+
+    // Goes to other uses
+    socket.broadcast.emit('message', { msg: `${user} has connected` })
+
+    // Goes to every user
     io.sockets.emit('message', { user, msg });
+
   });
+
+  socket.on('disconnect', (user) => {
+    socket.broadcast.emit('message', { user, msg: 'has disconnected' });
+  })
+
+  socket.on('activity', (user) => {
+    socket.broadcast.emit('activity', user);
+  })
 });
