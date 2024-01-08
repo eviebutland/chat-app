@@ -10,8 +10,6 @@ const server = app.listen(port, () => {
 });
 const io = new Server(server, { cors: { origin: '*' } });
 
-
-
 io.sockets.on("connection", (socket) => {
   socket.on("message", ({ msg, user }) => {
     // Goes to current user
