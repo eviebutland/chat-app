@@ -14,10 +14,9 @@
     </div>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
 import { io } from "socket.io-client";
-
+// import { ref } from "vue";
 
 const socket = io('http://localhost:3050/', { transports: ['websocket'] })
 
@@ -100,8 +99,9 @@ socket.on('activity', ({ user }) => {
 </script>
 
 
-<script>
+<script lang="ts">
 export default {
     name: 'Chat'
 }
+
 </script>

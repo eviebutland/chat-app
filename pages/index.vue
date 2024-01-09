@@ -4,8 +4,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import './input.css'
-import Chat from './chat.vue'
 </script>
 
+<script lang="ts">
+export default {
+  name: "Index"
+}
+</script>
