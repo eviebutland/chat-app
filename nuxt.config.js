@@ -8,10 +8,12 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  css: ["@fortawesome/fontawesome-svg-core/styles.css"],
   components: [
     {
       path: "~/components",
       pathPrefix: false,
     },
   ],
+  modules: ["@nuxtjs/tailwindcss"],
 });

@@ -1,23 +1,31 @@
 <template>
     <div>
-        <form>
-            <input @keypress="handleInput" type="text" v-model="message" placeholder="send a message" />
-            <button @click="handleSend">Send</button>
-        </form>
-        <ul>
-            <li v-for="chat of chatMessages">
-                {{ chat.user }}: {{ chat.msg }}
+        <ul class="p-4">
+            <li class="list-none border-b border-gray-50 p-2 hover:bg-gray-50" v-for="chat of chatMessages">
+                <div class="flex space-x-2 items-center">
+                    <span>
+                        <FontAwesomeIcon :icon="faUserNinja" />
+                    </span>
+                    {{ chat.user }}: {{ chat.msg }}
+                </div>
             </li>
-            <p v-if="userTyping"><strong>{{ userTyping }} is typing</strong></p>
         </ul>
-        <p></p>
+        <form class="fixed bottom-0 w-full p-4">
+            <div class="flex space-x-2">
+                <input class="w-full border rounded-sm" @keypress="handleInput" type="text" v-model="message"
+                    placeholder="Send a message" />
+                <button class="border-green bg-green-600 rounded-sm px-4 py-2 text-white" @click="handleSend">Send</button>
+            </div>
+
+            <p v-if="userTyping"><i>{{ userTyping }} is typing</i></p>
+        </form>
     </div>
 </template>
 
 <script setup lang="ts">
 import { io } from "socket.io-client";
-// import { ref } from "vue";
-
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faUserNinja } from '@fortawesome/free-solid-svg-icons'
 const socket = io('http://localhost:3050/', { transports: ['websocket'] })
 
 const message = ref()
@@ -54,6 +62,8 @@ async function handleSend(e) {
 
     } catch (error) {
         console.log(error)
+    } finally {
+        message.value = null
     }
 }
 
