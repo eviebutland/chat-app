@@ -1,13 +1,30 @@
 <template>
-  <div>
-    <section class="p-4">
-      <!-- name of other person you are talking too -->
-      <h1>John</h1>
-    </section>
-    <hr />
-    <main>
-      <Chat></Chat>
-    </main>
+  <div class="flex h-full w-full">
+    <nav class="border-r h-full min-w-[20rem]">
+      <ul class="min-h-screen">
+        <li class="border-b p-2">
+          <p class="font-bold">John</p>
+          <span>
+            <!-- display last message -->
+            You: lets do it!
+          </span>
+        </li>
+        <li class="border-b p-2">
+          <p class="font-bold">Lucy</p>
+          <span><i>Lucy is typing</i></span>
+        </li>
+      </ul>
+    </nav>
+    <div class="w-full flex flex-1 min-h-screen flex-col justify-between">
+      <section>
+        <!-- name of other person you are talking too -->
+        <h1 class=" p-4 w-full">John</h1>
+        <hr />
+      </section>
+      <main>
+        <Chat></Chat>
+      </main>
+    </div>
   </div>
 </template>
 

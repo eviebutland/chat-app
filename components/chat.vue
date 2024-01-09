@@ -10,11 +10,13 @@
                 </div>
             </li>
         </ul>
-        <form class="fixed bottom-0 w-full p-4">
+        <!-- fixed bottom-0 -->
+        <form class="p-4">
             <div class="flex space-x-2">
-                <input class="w-full border rounded-sm" @keypress="handleInput" type="text" v-model="message"
+                <input class="flex-1 border rounded-sm" @keypress="handleInput" type="text" v-model="message"
                     placeholder="Send a message" />
-                <button class="border-green bg-green-600 rounded-sm px-4 py-2 text-white" @click="handleSend">Send</button>
+                <button class="flex-1 max-w-[200px] border-green bg-green-600 rounded-sm px-4 py-2 text-white"
+                    @click="handleSend">Send</button>
             </div>
 
             <p v-if="userTyping"><i>{{ userTyping }} is typing</i></p>
