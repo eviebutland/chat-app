@@ -2,25 +2,22 @@
   <div class="flex h-full w-full">
     <nav class="border-r h-full min-w-[20rem]">
       <ul class="min-h-screen">
-        <li class="border-b p-2">
-          <p class="font-bold">John</p>
-          <span>
-            <!-- display last message -->
-            You: lets do it!
-          </span>
-        </li>
-        <li class="border-b p-2">
-          <p class="font-bold">Lucy</p>
-          <span><i>Lucy is typing</i></span>
+        <li class="border-b p-2" :class="{ 'bg-green-100': openChatRoom === chat.user }" v-for="chat in activeChatRooms">
+          <button class="w-full text-left" @click="handleEnterChat(chat.user)">
+            <p class="font-bold">{{ chat.user }}</p>
+            <span>
+              {{ chat.messages[chat.messages.length - 1] }}
+            </span>
+          </button>
         </li>
       </ul>
     </nav>
     <div class="w-full flex flex-1 min-h-screen flex-col justify-between">
       <section>
-        <!-- name of other person you are talking too -->
-        <h1 class=" p-4 w-full">John</h1>
+        <h1 class=" p-4 w-full">{{ openChatRoom }}</h1>
         <hr />
       </section>
+
       <main>
         <Chat></Chat>
       </main>
@@ -29,12 +26,29 @@
 </template>
 
 <script setup lang="ts">
+import { socket } from '../server/socket'
+
 useHead({
   title: 'Chat App',
   meta: [
     { name: 'Instant messaging chat app', content: 'Chat app' }
   ]
 })
+
+const activeChatRooms = ref([
+  { user: 'john', messages: ['Lets do it!'] }, { user: 'lucy', messages: [] }
+])
+const openChatRoom = ref()
+
+function handleEnterChat(chatUser: string) {
+  console.log('trigger chat with', chatUser)
+  openChatRoom.value = chatUser
+
+  socket.emit('enterChat', {
+    currentUser: socket.id,
+    chatUser // change this to chat user i.e Lucy
+  })
+}
 
 </script>
 

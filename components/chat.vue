@@ -25,10 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import { io } from "socket.io-client";
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUserNinja } from '@fortawesome/free-solid-svg-icons'
-const socket = io('http://localhost:3050/', { transports: ['websocket'] })
+import { socket } from '../server/socket'
 
 const message = ref()
 
@@ -39,7 +39,7 @@ socket.on("connect_error", (err) => {
 const chatMessages = ref([])
 const userTyping = ref()
 
-async function handleSend(e) {
+async function handleSend(e: Event) {
     e.preventDefault()
     userTyping.value = null
 
