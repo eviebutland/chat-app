@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { socket } from '../server/socket'
-
+import { getUsers } from '../server/users/get'
 useHead({
   title: 'Chat App',
   meta: [
@@ -49,7 +49,15 @@ function handleEnterChat(chatUser: string) {
     chatUser // change this to chat user i.e Lucy
   })
 }
-
+async function fetchUsers() {
+  try {
+    const users = await getUsers()
+    console.log(users)
+  } catch (error) {
+    console.log(error)
+  }
+}
+fetchUsers()
 </script>
 
 <script lang="ts">

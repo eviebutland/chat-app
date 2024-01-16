@@ -1,14 +1,16 @@
 import express from "express";
-
+import { connectDb } from "~/server/db";
 import { Server } from "socket.io";
 
 const app = express();
 const port = 3050;
 
-// Set up DB here
 const server = app.listen(port, () => {
+  connectDb()
   console.log("Listening on port: " + port);
 });
+
+
 const io = new Server(server, { cors: { origin: '*' } });
 
 io.sockets.on("connection", (socket) => {
