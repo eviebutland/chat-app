@@ -27,7 +27,14 @@ INSERT INTO friends (requester_id, adressee_id) VALUES (1, 2);
 INSERT INTO friends (requester_id, adressee_id) VALUES (1, 3);
 INSERT INTO friends (requester_id, adressee_id) VALUES (1, 4);
 
+
+
 -- user 1 friends:
 -- friend table, requester_id 1, adressee_id 2
 -- friend table, requester_id 1, adressee_id 4
 -- Then get all the friends table with requester_id === user_id 1
+SELECT * FROM users WHERE first_name IN ('evie', 'lucy', 'olivia') -- this is the same as saying OR for each name
+SELECT * FROM users WHERE created_on BETWEEN DATE 2024-01-01 AND 2024-01-15 -- this is the same as saying OR for each name
+SELECT * FROM users WHERE email LIKE '%.com' -- does a partial match (ILIKE ignores casing)
+SELECT email, COUNT(*) FROM users GROUP BY email -- group by email with count
+SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 5-- group by email with count and specify condition
