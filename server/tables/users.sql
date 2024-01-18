@@ -1,10 +1,10 @@
 create table users (
 	user_id BIGSERIAL PRIMARY KEY,
 	password VARCHAR(50),
-	email VARCHAR(50),
+	email VARCHAR(50) UNIQUE,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
-	created_on DATE
+	created_on TIMESTAMP
 );
 
 insert into users (password, email, first_name, last_name, created_on) values ('aL1&a?k&{4uI*\', 'gberceros0@reuters.com', 'Guglielmo', 'Berceros', '2023-06-12 21:34:56');

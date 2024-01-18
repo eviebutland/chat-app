@@ -51,8 +51,8 @@ function handleEnterChat(chatUser: string) {
 }
 async function fetchUsers() {
   try {
-    const users = await getUsers()
-    console.log(users)
+    // const users = await getUsers()
+    // console.log(users)
   } catch (error) {
     console.log(error)
   }
