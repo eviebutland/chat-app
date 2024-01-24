@@ -1,7 +1,7 @@
 import express from "express";
 import { connectDb } from "~/server/db";
 import { Server } from "socket.io";
-
+import router from "./router";
 const app = express();
 const port = 3050;
 
@@ -10,6 +10,7 @@ const server = app.listen(port, () => {
   console.log("Listening on port: " + port);
 });
 
+app.use(router)
 
 const io = new Server(server, { cors: { origin: '*' } });
 
@@ -24,7 +25,6 @@ io.sockets.on("connection", (socket) => {
 
     // Goes to every user
     io.sockets.emit('message', { user, msg, time });
-
   });
 
   socket.on('disconnect', (user) => {

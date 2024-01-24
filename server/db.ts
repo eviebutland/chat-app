@@ -3,7 +3,6 @@ import pg from 'pg'
 
 // dotenv.config()
 
-
 export const client = new pg.Client({
     user: 'eviebutland',
     host: 'localhost',
@@ -11,9 +10,6 @@ export const client = new pg.Client({
     password: 'C!ndY&d1Zzy',
     port: 5432, // Default PostgreSQL port
 })
-
-
-
 
 export const connectDb = async (): Promise<void> => {
     try {
