@@ -1,6 +1,8 @@
 import express from "express";
 import { connectDb } from "~/server/db";
 import { Server } from "socket.io";
+import bodyParser from "body-parser";
+
 import router from "./router";
 const app = express();
 const port = 3050;
@@ -10,6 +12,7 @@ const server = app.listen(port, () => {
   console.log("Listening on port: " + port);
 });
 
+app.use(bodyParser.json())
 app.use(router)
 
 const io = new Server(server, { cors: { origin: '*' } });
