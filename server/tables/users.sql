@@ -19,14 +19,6 @@ insert into users (password, email, first_name, last_name, created_on) values ('
 insert into users (password, email, first_name, last_name, created_on) values ('fH1&>D_8', 'lbeddis9@pcworld.com', 'Leoline', 'Beddis', '2023-03-31 00:06:42');
 
 
-CREATE TABLE friends (
-    requester_id BIGSERIAL REFERENCES users(user_id),
-    adressee_id BIGSERIAL REFERENCES users(user_id) 
-)
-INSERT INTO friends (requester_id, adressee_id) VALUES (1, 2);
-INSERT INTO friends (requester_id, adressee_id) VALUES (1, 3);
-INSERT INTO friends (requester_id, adressee_id) VALUES (1, 4);
-
 
 
 -- user 1 friends:
