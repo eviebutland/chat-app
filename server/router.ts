@@ -31,7 +31,7 @@ router.get('/users/:user_id/friends', (req, res) => {
 router.get('/friends', (req, res) => {
     getAllFriends(req, res)
 })
-router.post('/users/:user_id/friends/:friend_id', (req, res) => {
+router.post('/friends/:requester/friends/:friend_id', (req, res) => {
     createFriendConnection(req, res)
 })
 
