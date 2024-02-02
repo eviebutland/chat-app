@@ -4,7 +4,7 @@ import { client } from '../db'
 export async function getAllFriends(req: express.Request, res: express.Response) {
     try {
         const result = await client.query('SELECT * FROM friends')
-        res.send({ data: result.rows })
+        res.send({ data: result.rows, length: result.rowCount })
 
     } catch (error) {
         res.send({ message: 'Something went wrong', error })
@@ -31,15 +31,23 @@ export async function getOneFriendForUser(req: express.Request, res: express.Res
     }
 }
 
+
 export async function getAllFriendsByUser(req: express.Request, res: express.Response) {
     if (req.params.user_id !== ':user_id') {
 
         try {
             const result = await client.query(`SELECT * FROM friends WHERE requester_id = ${req.params.user_id}`)
             const friendIds = result.rows.map(row => row.adressee_id).join(',')
-            const friends = await client.query(`SELECT * FROM users WHERE user_id in (${friendIds})`)
+            if (friendIds.length) {
 
-            res.send({ data: friends.rows })
+                const friends = await client.query(`SELECT * FROM users WHERE user_id in (${friendIds})`)
+
+                res.send({ data: friends.rows })
+            } else {
+
+                res.send({ data: `User ${req.params.user_id} has ${friendIds.length} friends` })
+
+            }
         } catch (error) {
             res.send({ message: 'Something went wrong', error })
         }
