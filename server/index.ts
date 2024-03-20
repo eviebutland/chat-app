@@ -8,8 +8,8 @@ const app = express();
 const port = 3050;
 
 const server = app.listen(port, () => {
-  connectDb()
   console.log("Listening on port: " + port);
+  connectDb()
 });
 
 app.use(bodyParser.json())
