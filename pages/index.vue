@@ -3,18 +3,18 @@
     <nav class="border-r h-full min-w-[20rem]">
       <ul class="min-h-screen">
         <li class="border-b p-2" :class="{ 'bg-green-100': openChatRoom === chat.user }" v-for="chat in activeChatRooms">
-          <!-- <button class="w-full text-left" @click="handleEnterChat(chat.user)">
+          <button class="w-full text-left" @click="handleEnterChat(chat.user)">
             <p class="font-bold">{{ chat.user }}</p>
             <span v-if="!!chat.messages.length">
               {{ chat.messages[chat.messages.length - 1] }}
             </span>
-          </button> -->
+          </button>
         </li>
       </ul>
     </nav>
     <div class="w-full flex flex-1 min-h-screen flex-col justify-between">
       <section>
-        <!-- <h1 class=" p-4 w-full">{{ openChatRoom }}</h1> -->
+        <h1 class=" p-4 w-full">{{ openChatRoom }}</h1>
         <hr />
       </section>
 
@@ -35,15 +35,15 @@ const activeChatRooms = ref([
 ])
 const openChatRoom = ref()
 
-// function handleEnterChat(chatUser: string) {
-//   console.log('trigger chat with', chatUser)
-//   openChatRoom.value = chatUser
+function handleEnterChat(chatUser: string) {
+  console.log('trigger chat with', chatUser)
+  openChatRoom.value = chatUser
 
-//   socket.emit('enterChat', {
-//     currentUser: socket.id,
-//     chatUser // change this to chat user i.e Lucy
-//   })
-// }
+  socket.emit('enterChat', {
+    currentUser: socket.id,
+    chatUser // change this to chat user i.e Lucy
+  })
+}
 async function fetchUsers() {
   try {
     // const users = await getUsers()
