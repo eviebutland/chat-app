@@ -19,7 +19,7 @@
       </section>
 
       <main>
-        <!-- <Chat></Chat> -->
+        <Chat></Chat>
       </main>
     </div>
   </div>
