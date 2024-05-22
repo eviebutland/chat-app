@@ -1,7 +1,7 @@
 import { client } from '~/server/db.js'
 import express from 'express'
 
-export async function getUsers(req: express.Request, res: express.Response) {
+export async function getUsers(req?: express.Request, res: express.Response) {
     try {
         const result = await client.query('SELECT * FROM users')
 
