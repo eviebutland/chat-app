@@ -10,7 +10,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "start:DB": "brew services start postgresql",
-    "stop:DB": "brew services stop postgresql@15"
+    "stop:DB": "brew services stop postgresql"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.10.4",
