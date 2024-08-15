@@ -2,10 +2,13 @@ import express from "express";
 import { connectDb } from "~/server/db";
 import { Server } from "socket.io";
 import bodyParser from "body-parser";
-
+import pino from 'pino-http'
 import router from "./router";
+
 const app = express();
 const port = 3050;
+
+app.use(pino)
 
 const server = app.listen(port, () => {
   console.log("Listening on port: " + port);

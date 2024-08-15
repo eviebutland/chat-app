@@ -35,6 +35,8 @@
     "file-system": "^2.2.2",
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
+    "pino": "^9.3.2",
+    "pino-http": "^10.2.0",
     "socket.io": "^4.7.3",
     "socket.io-client": "^4.7.3",
     "tsx": "^4.7.0"

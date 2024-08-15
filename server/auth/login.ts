@@ -5,8 +5,11 @@ import { client } from '../db'
 export const login = (req: express.Request, res: express.Response) => {
     try{
 
+        req.log.info('calling login')
         console.log(req)
     } catch (error){
+        req.log.info('Error logging in', error)
+
         console.log('Error logging in', error)
     }
 }
